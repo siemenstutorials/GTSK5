@@ -5,7 +5,7 @@
 #                                                            #
 # Youtube channel:https://www.youtube.com/c/siemenstutorials #
 #                                                            # 
-# SHODOWSOCKS v1.0                                           #
+# GOST TO SOCKS5 v1.0                                        #
 #                                                            #
 ##############################################################
 #Install basic
@@ -37,6 +37,18 @@ echo "port = ${port}"
 
 nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 & 
 
+conf = nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &
+
+#创建自启动文件
+
+wget -N --no-check-certificate https://raw.githubusercontent.com/siemenstutorials/GTSK5/master/startup.sh
+chmod +x startup.sh
+sed -i '2i $conf' startup.sh
+
+#自动重启设置
+echo "正在设置开机自动运行"
+(echo "@reboot /root/startup.sh" ; crontab -l )| crontab
+echo "开机自动运行设置完成"
 #Socks5连接信息
 echo "安装完成SOCKS5连接信息如下:"
 
