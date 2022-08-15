@@ -24,6 +24,10 @@ wget -N --no-check-certificate https://github.com/siemenstutorials/GTSK5/release
 mv gost-linux-amd64-2.11.2 gost
 chmod +x gost
 
+#Startup下载
+wget -N --no-check-certificate https://raw.githubusercontent.com/siemenstutorials/GTSK5/master/startup.sh
+chmod +x startup.sh
+
 #Setting 
 
 read -p "请输入用户名：" username
@@ -37,13 +41,9 @@ echo "port = ${port}"
 
 nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 & 
 
-conf = nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &
-
 #创建自启动文件
 
-wget -N --no-check-certificate https://raw.githubusercontent.com/siemenstutorials/GTSK5/master/startup.sh
-chmod +x startup.sh
-sed -i '2i $conf' startup.sh
+sed -i '2i nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &' startup.sh
 
 #自动重启设置
 echo "正在设置开机自动运行"
