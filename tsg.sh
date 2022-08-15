@@ -38,13 +38,12 @@ read -p "请输入端口：" port
 echo "port = ${port}"
 
 #Socks5后台运行
-var=$(nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &) 
 
-nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &
+nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 & 
 
 #创建自启动文件
 
-sed -i '2i $var' >> /dev/null 2>&1 &' startup.sh
+sed -i '2i nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &' >> /dev/null 2>&1 &' startup.sh
 
 #自动重启设置
 echo "正在设置开机自动运行"
