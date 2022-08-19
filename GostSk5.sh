@@ -62,10 +62,10 @@ echo -e "开机自动运行设置完成"
 
 echo -e "安装完成SOCKS5连接信息如下:"
 echo "————————————————————————————————"
-echo -e"服务器IP: " ${public_ip}
-echo -e"用户名: " ${username}
-echo -e"密 码: " ${passwd}
-echo -e"端 口: " ${port}
+echo "服务器IP: " ${public_ip}
+echo "用户名: " ${username}
+echo "密 码: " ${passwd}
+echo "端 口: " ${port}
 echo "————————————————————————————————"
 #yum install lsof  ##安装lsof命令
 #lsof -i:8090  ##利用lsof命令查看端口占用的进程号，此处的8090为端口号
