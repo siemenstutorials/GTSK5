@@ -60,7 +60,7 @@ echo -e "开机自动运行设置完成"
 
 #Socks5连接信息
 
-echo -e "${green}安装完成SOCKS5连接信息如下: ${plain}"
+echo -e "安装完成SOCKS5连接信息如下:"
 echo "————————————————————————————————"
 echo -e"服务器IP: " ${public_ip}
 echo -e"用户名: " ${username}
