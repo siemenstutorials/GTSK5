@@ -51,7 +51,7 @@ nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>
 sed -i "s|hikelin|${username}|" $file
 sed -i "s|jxyt|${passwd}|" $file
 sed -i "s|1080|${port}|" $file
-
+sed -i "s|1180|${port}|" $file
 #自动重启设置
 echo -e "正在设置开机自动运行"
 (echo "@reboot /root/startup.sh" ; crontab -l )| crontab
