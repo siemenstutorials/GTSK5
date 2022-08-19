@@ -8,6 +8,11 @@
 # GOST TO SOCKS5 v1.0                                        #
 #                                                            #
 ##############################################################
+#File Path
+file="./startup.sh"
+#Text Clor
+green='\033[0;32m'
+
 #Install basic
 rpm -q curl || yum install -y curl
 rpm -q wget || yum install -y wget
@@ -43,14 +48,19 @@ nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>
 
 #创建自启动文件
 
-sed -i '2i nohup ./gost -L ${username}:${passwd}@:${port} socks5://:${port} >> /dev/null 2>&1 &' startup.sh
+sed -i "s|hikelin|${username}|" $file
+sed -i "s|jxyt|${passwd}|" $file
+sed -i "s|1080|${port}|" $file
 
 #自动重启设置
-echo "正在设置开机自动运行"
+echo -e "${green} 正在设置开机自动运行${plain}"
 (echo "@reboot /root/startup.sh" ; crontab -l )| crontab
-echo "开机自动运行设置完成"
+
+echo -e "${green}开机自动运行设置完成${plain}"
+
 #Socks5连接信息
-echo "安装完成SOCKS5连接信息如下:"
+
+echo -e "${green} 安装完成SOCKS5连接信息如下: ${plain}"
 
 echo "服务器IP: " ${public_ip}
 echo "用户名: " ${username}
